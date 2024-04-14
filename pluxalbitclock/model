@@ -1,0 +1,36 @@
+--------------------------- MODULE pluxalbitclock ---------------------------
+(*************************
+ --algorithm Clock {
+    variable b \in {0, 1};
+    {
+        lb: while(TRUE) { 
+            if (b = 0) { 
+                b := ( b + 1) % 2; 
+            } else { 
+                b := ( b + 1) % 2; 
+            }
+        }
+    }
+}
+ *************************)
+\* BEGIN TRANSLATION (chksum(pcal) = "f3df4237" /\ chksum(tla) = "d8c8b77c")
+EXTENDS Integers
+VARIABLE b
+
+vars == << b >>
+
+Init == (* Global variables *)
+        /\ b \in {0, 1}
+
+Next == IF b = 0
+           THEN /\ b' = ( b + 1) % 2
+           ELSE /\ b' = ( b + 1) % 2
+
+Spec == Init /\ [][Next]_vars
+
+\* END TRANSLATION 
+
+=============================================================================
+\* Modification History
+\* Last modified Sun Apr 14 13:52:10 IST 2024 by ankit
+\* Created Sat Apr 13 19:31:14 IST 2024 by ankit
